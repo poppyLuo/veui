@@ -738,7 +738,9 @@ export default {
         if (
           c.columns.length > 0 ||
           (c.field &&
-            (!this.columnFilter || this.columnFilter.indexOf(c.field) !== -1))
+            (!this.columnFilter || typeof this.columnFilter === 'function'
+              ? this.columnFilter(c.field)
+              : this.columnFilter.indexOf(c.field) !== -1))
         ) {
           cols.push(c)
         }
